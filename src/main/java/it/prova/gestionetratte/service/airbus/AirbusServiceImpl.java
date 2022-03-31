@@ -28,4 +28,10 @@ public class AirbusServiceImpl implements AirbusService {
 	public Airbus inserisciNuovo(Airbus airbus) {
 		return repository.save(airbus);
 	}
+	
+	@Override
+	@Transactional
+	public Airbus caricaSingoloElementoConTratte(long id) {
+		return repository.findByIdEager(id);
+	}
 }

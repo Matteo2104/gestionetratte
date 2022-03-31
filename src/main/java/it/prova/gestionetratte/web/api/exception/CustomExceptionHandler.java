@@ -46,8 +46,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
 
-	@ExceptionHandler(RegistaNotFoundException.class)
-	public ResponseEntity<Object> handleRegistaNotFoundException(RegistaNotFoundException ex, WebRequest request) {
+	@ExceptionHandler(AirbusNotFoundException.class)
+	public ResponseEntity<Object> handleRegistaNotFoundException(AirbusNotFoundException ex, WebRequest request) {
 
 		Map<String, Object> body = new LinkedHashMap<>();
 		body.put("timestamp", LocalDateTime.now());

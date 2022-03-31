@@ -17,6 +17,7 @@ import it.prova.gestionetratte.dto.AirbusDTO;
 import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.service.airbus.AirbusService;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
+import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
 
 
 @RestController
@@ -31,19 +32,16 @@ public class AirbusController {
 		return AirbusDTO.createAirbusDTOListFromModelList(airbusService.listAllElementsEager(), true);
 	}
 	
-	/*
 	@GetMapping("/{id}")
-	public RegistaDTO findById(@PathVariable(value = "id", required = true) long id) {
-		Regista regista = registaService.caricaSingoloElementoConFilms(id);
+	public AirbusDTO findById(@PathVariable(value = "id", required = true) long id) {
+		Airbus airbus = airbusService.caricaSingoloElementoConTratte(id);
 
-		if (regista == null)
-			throw new RegistaNotFoundException("Regista not found con id: " + id);
+		if (airbus == null)
+			throw new AirbusNotFoundException("Airbus not found con id: " + id);
 
-		return RegistaDTO.buildRegistaDTOFromModel(regista, true);
+		return AirbusDTO.buildAirbusDTOFromModel(airbus, true);
 	}
-	*/
-	
-	
+
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

@@ -1,10 +1,10 @@
 package it.prova.gestionetratte.web.api.exception;
 
-public class RegistaNotFoundException extends RuntimeException {
+public class AirbusNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public RegistaNotFoundException(String message) {
+	public AirbusNotFoundException(String message) {
 		super(message);
 	}
 
