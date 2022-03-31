@@ -9,4 +9,6 @@ public interface TrattaService {
 
 	public List<Tratta> listAllElementsEager();
 
+	public Tratta inserisciNuovo(Tratta tratta);
+
 }

@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import it.prova.gestionetratte.dto.AirbusDTO;
 import it.prova.gestionetratte.dto.TrattaDTO;
 import it.prova.gestionetratte.model.Airbus;
+import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.service.airbus.AirbusService;
 import it.prova.gestionetratte.service.tratta.TrattaService;
 import it.prova.gestionetratte.web.api.exception.AirbusNotEmptyException;
 import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
+import it.prova.gestionetratte.web.api.exception.AirbusNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 
 
@@ -46,23 +48,26 @@ public class TrattaController {
 
 		return AirbusDTO.buildAirbusDTOFromModel(airbus, true);
 	}
-
+	*/
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public AirbusDTO createNew(@Valid @RequestBody AirbusDTO airbusInput) {
+	public TrattaDTO createNew(@Valid @RequestBody TrattaDTO trattaInput) {
 		//se mi viene inviato un id jpa lo interpreta come update ed a me (producer) non sta bene
-		if(airbusInput.getId() != null)
+		if(trattaInput.getId() != null)
 			throw new IdNotNullForInsertException("Non è ammesso fornire un id per la creazione");
 		
-		Airbus airbusInserito = airbusService.inserisciNuovo(airbusInput.buildAirbusModel());
+		if (trattaInput.getAirbus() == null || trattaInput.getAirbus().getId() == null)
+			throw new AirbusNotNullForInsertException("Non è ammesso inserire una tratta senza un airbus associato");
 		
-		System.out.println(AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false));
+		Tratta trattaInserita = trattaService.inserisciNuovo(trattaInput.buildTrattaModel());
 		
-		return AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false);
+		//System.out.println(AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false));
+		
+		return TrattaDTO.buildTrattaDTOFromModel(trattaInserita, false);
 	}
 	
-	
+	/*
 	@PutMapping("/{id}")
 	public AirbusDTO update(@Valid @RequestBody AirbusDTO airbusInput, @PathVariable(required = true) Long id) {
 		Airbus airbus = airbusService.caricaSingoloElemento(id);

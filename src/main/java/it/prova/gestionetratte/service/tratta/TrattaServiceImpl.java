@@ -21,4 +21,10 @@ public class TrattaServiceImpl implements TrattaService {
 	public List<Tratta> listAllElementsEager() {
 		return repository.findAllEager();
 	}
+	
+	@Override
+	@Transactional
+	public Tratta inserisciNuovo(Tratta tratta) {
+		return repository.save(tratta);
+	}
 }
