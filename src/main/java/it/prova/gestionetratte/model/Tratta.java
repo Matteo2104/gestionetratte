@@ -116,5 +116,13 @@ public class Tratta {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Tratta [id=" + id + ", codice=" + codice + ", descrizione=" + descrizione + ", data=" + data
+				+ ", oraDecollo=" + oraDecollo + ", oraAtterraggio=" + oraAtterraggio + ", stato=" + stato + ", airbus="
+				+ airbus + "]";
+	}
+	
+	
 
 }

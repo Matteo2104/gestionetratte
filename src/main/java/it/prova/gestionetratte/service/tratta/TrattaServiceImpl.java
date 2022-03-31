@@ -33,4 +33,16 @@ public class TrattaServiceImpl implements TrattaService {
 	public Tratta caricaSingoloElementoConAirbus(long id) {
 		return repository.findByIdEager(id);
 	}
+	
+	@Override
+	@Transactional
+	public Tratta caricaSingoloElemento(long id) {
+		return repository.findById(id).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+	public Tratta aggiorna(Tratta tratta) {
+		return repository.save(tratta);
+	}
 }

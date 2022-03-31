@@ -69,20 +69,24 @@ public class TrattaController {
 		return TrattaDTO.buildTrattaDTOFromModel(trattaInserita, false);
 	}
 	
-	/*
+	
 	@PutMapping("/{id}")
-	public AirbusDTO update(@Valid @RequestBody AirbusDTO airbusInput, @PathVariable(required = true) Long id) {
-		Airbus airbus = airbusService.caricaSingoloElemento(id);
+	public TrattaDTO update(@Valid @RequestBody TrattaDTO trattaInput, @PathVariable(required = true) Long id) {
+		Tratta tratta = trattaService.caricaSingoloElementoConAirbus(id);
 
-		if (airbus == null)
-			throw new AirbusNotFoundException("Airbus not found con id: " + id);
+		if (tratta == null)
+			throw new TrattaNotFoundException("Tratta not found con id: " + id);
 
-		airbusInput.setId(id);
-		Airbus airbusAggiornato = airbusService.aggiorna(airbusInput.buildAirbusModel());
-		return AirbusDTO.buildAirbusDTOFromModel(airbusAggiornato, false);
+		trattaInput.setId(id);
+		if (trattaInput.getAirbus() == null || trattaInput.getAirbus().getId() == null)
+			trattaInput.setAirbus(AirbusDTO.buildAirbusDTOFromModel(tratta.getAirbus(), false));
+		
+		
+		Tratta trattaAggiornata = trattaService.aggiorna(trattaInput.buildTrattaModel());
+		return TrattaDTO.buildTrattaDTOFromModel(trattaAggiornata, false);
 	}
 	
-	
+	/*
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable(required = true) Long id) {

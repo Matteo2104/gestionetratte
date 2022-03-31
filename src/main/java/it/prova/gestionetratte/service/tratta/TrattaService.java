@@ -13,4 +13,8 @@ public interface TrattaService {
 
 	public Tratta caricaSingoloElementoConAirbus(long id);
 
+	public Tratta caricaSingoloElemento(long id);
+
+	public Tratta aggiorna(Tratta tratta);
+
 }
