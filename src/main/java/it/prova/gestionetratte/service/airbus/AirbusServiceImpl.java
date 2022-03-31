@@ -34,4 +34,16 @@ public class AirbusServiceImpl implements AirbusService {
 	public Airbus caricaSingoloElementoConTratte(long id) {
 		return repository.findByIdEager(id);
 	}
+	
+	@Override
+	@Transactional
+	public Airbus caricaSingoloElemento(long id) {
+		return repository.findById(id).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+	public Airbus aggiorna(Airbus airbus) {
+		return repository.save(airbus);
+	}
 }

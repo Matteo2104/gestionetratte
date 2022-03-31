@@ -57,19 +57,20 @@ public class AirbusController {
 		return AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false);
 	}
 	
-	/*
+	
 	@PutMapping("/{id}")
-	public RegistaDTO update(@Valid @RequestBody RegistaDTO registaInput, @PathVariable(required = true) Long id) {
-		Regista regista = registaService.caricaSingoloElemento(id);
+	public AirbusDTO update(@Valid @RequestBody AirbusDTO airbusInput, @PathVariable(required = true) Long id) {
+		Airbus airbus = airbusService.caricaSingoloElemento(id);
 
-		if (regista == null)
-			throw new RegistaNotFoundException("Regista not found con id: " + id);
+		if (airbus == null)
+			throw new AirbusNotFoundException("Airbus not found con id: " + id);
 
-		registaInput.setId(id);
-		Regista registaAggiornato = registaService.aggiorna(registaInput.buildRegistaModel());
-		return RegistaDTO.buildRegistaDTOFromModel(registaAggiornato, false);
+		airbusInput.setId(id);
+		Airbus airbusAggiornato = airbusService.aggiorna(airbusInput.buildAirbusModel());
+		return AirbusDTO.buildAirbusDTOFromModel(airbusAggiornato, false);
 	}
-
+	
+	/*
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable(required = true) Long id) {

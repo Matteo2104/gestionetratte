@@ -11,5 +11,10 @@ public interface AirbusService {
 	public Airbus inserisciNuovo(Airbus airbus);
 
 	public Airbus caricaSingoloElementoConTratte(long id);
+	
+	public Airbus caricaSingoloElemento(long id);
+
+	public Airbus aggiorna(Airbus airbus);
+
 
 }
