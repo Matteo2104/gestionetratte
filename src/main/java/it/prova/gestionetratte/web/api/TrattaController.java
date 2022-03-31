@@ -1,9 +1,7 @@
 package it.prova.gestionetratte.web.api;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,15 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import it.prova.gestionetratte.dto.AirbusDTO;
 import it.prova.gestionetratte.dto.TrattaDTO;
-import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.model.Tratta;
-import it.prova.gestionetratte.service.airbus.AirbusService;
 import it.prova.gestionetratte.service.tratta.TrattaService;
-import it.prova.gestionetratte.web.api.exception.AirbusNotEmptyException;
-import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
 import it.prova.gestionetratte.web.api.exception.AirbusNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.TrattaNotFoundException;
@@ -103,6 +96,11 @@ public class TrattaController {
 	public List<TrattaDTO> search(@RequestBody TrattaDTO example) {
 		return TrattaDTO.createTrattaDTOListFromModelList(
 				trattaService.findByExample(example.buildTrattaModel(), null, null, null).toList(), false);
+	}
+	
+	@GetMapping("/concludiTratte")
+	public void concludiTratte() {
+		trattaService.concludiTratte();
 	}
 	
 }

@@ -1,5 +1,6 @@
 package it.prova.gestionetratte.service.tratta;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionetratte.model.Airbus;
+import it.prova.gestionetratte.model.StatoTratta;
 import it.prova.gestionetratte.model.Tratta;
 import it.prova.gestionetratte.repository.TrattaRepository;
 
@@ -59,6 +61,17 @@ public class TrattaServiceImpl implements TrattaService {
 	@Transactional
 	public void rimuovi(Tratta tratta) {
 		repository.delete(tratta);
+	}
+	
+	@Override
+	@Transactional
+	public void concludiTratte() {
+		List<Tratta> tratte = (List<Tratta>)repository.findAll();
+		
+		for (Tratta tratta : tratte) {
+			if (tratta.getOraAtterraggio() != null && tratta.getOraAtterraggio().compareTo(LocalTime.now()) < 0 && !tratta.getStato().equals(StatoTratta.CONCLUSA))
+					tratta.setStato(StatoTratta.CONCLUSA);
+		}
 	}
 	
 	@Override
