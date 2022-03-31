@@ -46,4 +46,10 @@ public class AirbusServiceImpl implements AirbusService {
 	public Airbus aggiorna(Airbus airbus) {
 		return repository.save(airbus);
 	}
+	
+	@Override
+	@Transactional
+	public void rimuovi(Airbus airbus) {
+		repository.delete(airbus);
+	}
 }

@@ -17,6 +17,7 @@ import it.prova.gestionetratte.dto.AirbusDTO;
 import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.service.airbus.AirbusService;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
+import it.prova.gestionetratte.web.api.exception.AirbusNotEmptyException;
 import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
 
 
@@ -70,18 +71,22 @@ public class AirbusController {
 		return AirbusDTO.buildAirbusDTOFromModel(airbusAggiornato, false);
 	}
 	
-	/*
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable(required = true) Long id) {
-		Regista regista = registaService.caricaSingoloElemento(id);
+		Airbus airbus = airbusService.caricaSingoloElementoConTratte(id);
 
-		if (regista == null)
-			throw new RegistaNotFoundException("Regista not found con id: " + id);
+		if (airbus == null)
+			throw new AirbusNotFoundException("Airbus not found con id: " + id);
+		
+		if (airbus.getTratte() != null && !airbus.getTratte().isEmpty())
+			throw new AirbusNotEmptyException("Airbus with id: " + id + " is not empty, you cannot delete it");
 
-		registaService.rimuovi(regista);
+		airbusService.rimuovi(airbus);
 	}
-
+	
+	/*
 	@PostMapping("/search")
 	public List<RegistaDTO> search(@RequestBody RegistaDTO example) {
 		return RegistaDTO.createRegistaDTOListFromModelList(registaService.findByExample(example.buildRegistaModel(), null, null, null).toList(),

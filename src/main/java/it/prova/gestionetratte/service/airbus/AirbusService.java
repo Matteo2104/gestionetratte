@@ -16,5 +16,7 @@ public interface AirbusService {
 
 	public Airbus aggiorna(Airbus airbus);
 
+	public void rimuovi(Airbus airbus);
+
 
 }
