@@ -98,11 +98,11 @@ public class TrattaController {
 		trattaService.rimuovi(tratta);
 	}
 	
-	/*
+	
 	@PostMapping("/search")
-	public List<AirbusDTO> search(@RequestBody AirbusDTO example) {
-		return AirbusDTO.createAirbusDTOListFromModelList(
-				airbusService.findByExample(example.buildAirbusModel(), null, null, null).toList(), false);
+	public List<TrattaDTO> search(@RequestBody TrattaDTO example) {
+		return TrattaDTO.createTrattaDTOListFromModelList(
+				trattaService.findByExample(example.buildTrattaModel(), null, null, null).toList(), false);
 	}
-	*/
+	
 }

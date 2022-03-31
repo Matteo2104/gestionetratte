@@ -2,7 +2,8 @@ package it.prova.gestionetratte.service.tratta;
 
 import java.util.List;
 
-import it.prova.gestionetratte.model.Airbus;
+import org.springframework.data.domain.Page;
+
 import it.prova.gestionetratte.model.Tratta;
 
 public interface TrattaService {
@@ -18,5 +19,7 @@ public interface TrattaService {
 	public Tratta aggiorna(Tratta tratta);
 
 	public void rimuovi(Tratta tratta);
+
+	public Page<Tratta> findByExample(Tratta example, Integer pageNo, Integer pageSize, String sortBy);
 
 }
