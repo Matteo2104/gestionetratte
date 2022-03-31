@@ -1,5 +1,6 @@
 package it.prova.gestionetratte.web.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,5 +103,7 @@ public class TrattaController {
 	public void concludiTratte() {
 		trattaService.concludiTratte();
 	}
+	
+	
 	
 }

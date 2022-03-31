@@ -24,4 +24,6 @@ public interface TrattaService {
 
 	public void concludiTratte();
 
+	public List<Tratta> listAllElements();
+
 }

@@ -17,6 +17,7 @@ public class TrattaDTO {
 	private Date data;
 	private LocalTime oraDecollo;
 	private LocalTime oraAtterraggio;
+	private boolean conSovrapposizioni;
 	
 	private StatoTratta stato;
 	
@@ -79,6 +80,12 @@ public class TrattaDTO {
 	}
 	public void setAirbus(AirbusDTO airbus) {
 		this.airbus = airbus;
+	}
+	public boolean isConSovrapposizioni() {
+		return conSovrapposizioni;
+	}
+	public void setConSovrapposizioni(boolean conSovrapposizioni) {
+		this.conSovrapposizioni = conSovrapposizioni;
 	}
 	
 	

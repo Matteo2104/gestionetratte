@@ -10,7 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import it.prova.gestionetratte.model.Airbus;
 
 public interface AirbusRepository extends CrudRepository<Airbus, Long>, PagingAndSortingRepository<Airbus, Long>, JpaSpecificationExecutor<Airbus> {
-	@Query("from Airbus a left join fetch a.tratte t")
+	@Query("select distinct a from Airbus a left join fetch a.tratte t")
 	public List<Airbus> findAllEager();
 	
 	@Query("from Airbus a left join fetch a.tratte t where a.id = ?1")

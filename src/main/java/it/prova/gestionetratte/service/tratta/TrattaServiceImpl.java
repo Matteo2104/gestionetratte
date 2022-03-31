@@ -35,6 +35,12 @@ public class TrattaServiceImpl implements TrattaService {
 	
 	@Override
 	@Transactional
+	public List<Tratta> listAllElements() {
+		return (List<Tratta>)repository.findAll();
+	}
+	
+	@Override
+	@Transactional
 	public Tratta inserisciNuovo(Tratta tratta) {
 		return repository.save(tratta);
 	}
