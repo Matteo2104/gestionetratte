@@ -21,4 +21,11 @@ public class AirbusServiceImpl implements AirbusService {
 	public List<Airbus> listAllElementsEager() {
 		return repository.findAllEager();
 	}
+	
+	
+	@Override
+	@Transactional
+	public Airbus inserisciNuovo(Airbus airbus) {
+		return repository.save(airbus);
+	}
 }

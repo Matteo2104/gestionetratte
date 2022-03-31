@@ -8,4 +8,6 @@ public interface AirbusService {
 
 	public List<Airbus> listAllElementsEager();
 
+	public Airbus inserisciNuovo(Airbus airbus);
+
 }

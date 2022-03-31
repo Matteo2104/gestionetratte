@@ -21,7 +21,11 @@ public class AirbusDTO {
 	
 	public AirbusDTO() {}
 	public AirbusDTO(Long id, String codice, String descrizione, Date dataInizioServizio, int numeroPasseggeri) {
-		
+		this.id = id;
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.dataInizioServizio = dataInizioServizio;
+		this.numeroPasseggeri = numeroPasseggeri;
 	}
 	public Long getId() {
 		return id;

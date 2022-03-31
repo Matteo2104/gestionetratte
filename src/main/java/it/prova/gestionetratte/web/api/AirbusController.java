@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import it.prova.gestionetratte.dto.AirbusDTO;
+import it.prova.gestionetratte.model.Airbus;
 import it.prova.gestionetratte.service.airbus.AirbusService;
+import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
 
 
 @RestController
@@ -42,18 +44,20 @@ public class AirbusController {
 	*/
 	
 	
-//	// gli errori di validazione vengono mostrati con 400 Bad Request ma
-//	// elencandoli grazie al ControllerAdvice
-//	@PostMapping
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public RegistaDTO createNew(@Valid @RequestBody RegistaDTO registaInput) {
-//		//se mi viene inviato un id jpa lo interpreta come update ed a me (producer) non sta bene
-//		if(registaInput.getId() != null)
-//			throw new IdNotNullForInsertException("Non è ammesso fornire un id per la creazione");
-//		
-//		Regista registaInserito = registaService.inserisciNuovo(registaInput.buildRegistaModel());
-//		return RegistaDTO.buildRegistaDTOFromModel(registaInserito, false);
-//	}
+	
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public AirbusDTO createNew(@Valid @RequestBody AirbusDTO airbusInput) {
+		//se mi viene inviato un id jpa lo interpreta come update ed a me (producer) non sta bene
+		if(airbusInput.getId() != null)
+			throw new IdNotNullForInsertException("Non è ammesso fornire un id per la creazione");
+		
+		Airbus airbusInserito = airbusService.inserisciNuovo(airbusInput.buildAirbusModel());
+		
+		System.out.println(AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false));
+		
+		return AirbusDTO.buildAirbusDTOFromModel(airbusInserito, false);
+	}
 	
 	/*
 	@PutMapping("/{id}")
