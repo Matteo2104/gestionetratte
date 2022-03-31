@@ -26,6 +26,7 @@ import it.prova.gestionetratte.web.api.exception.AirbusNotEmptyException;
 import it.prova.gestionetratte.web.api.exception.AirbusNotFoundException;
 import it.prova.gestionetratte.web.api.exception.AirbusNotNullForInsertException;
 import it.prova.gestionetratte.web.api.exception.IdNotNullForInsertException;
+import it.prova.gestionetratte.web.api.exception.TrattaNotFoundException;
 
 
 @RestController
@@ -38,17 +39,18 @@ public class TrattaController {
 	public List<TrattaDTO> getAll() {
 		return TrattaDTO.createTrattaDTOListFromModelList(trattaService.listAllElementsEager(), true);
 	}
-	/*
+	
+	
 	@GetMapping("/{id}")
-	public AirbusDTO findById(@PathVariable(value = "id", required = true) long id) {
-		Airbus airbus = airbusService.caricaSingoloElementoConTratte(id);
+	public TrattaDTO findById(@PathVariable(value = "id", required = true) long id) {
+		Tratta tratta = trattaService.caricaSingoloElementoConAirbus(id);
 
-		if (airbus == null)
-			throw new AirbusNotFoundException("Airbus not found con id: " + id);
+		if (tratta == null)
+			throw new TrattaNotFoundException("Tratta not found con id: " + id);
 
-		return AirbusDTO.buildAirbusDTOFromModel(airbus, true);
+		return TrattaDTO.buildTrattaDTOFromModel(tratta, true);
 	}
-	*/
+	
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

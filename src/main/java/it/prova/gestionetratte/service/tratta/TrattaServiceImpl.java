@@ -27,4 +27,10 @@ public class TrattaServiceImpl implements TrattaService {
 	public Tratta inserisciNuovo(Tratta tratta) {
 		return repository.save(tratta);
 	}
+	
+	@Override
+	@Transactional
+	public Tratta caricaSingoloElementoConAirbus(long id) {
+		return repository.findByIdEager(id);
+	}
 }

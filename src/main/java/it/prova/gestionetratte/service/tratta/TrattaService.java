@@ -11,4 +11,6 @@ public interface TrattaService {
 
 	public Tratta inserisciNuovo(Tratta tratta);
 
+	public Tratta caricaSingoloElementoConAirbus(long id);
+
 }
