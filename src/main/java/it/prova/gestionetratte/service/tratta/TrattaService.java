@@ -17,4 +17,6 @@ public interface TrattaService {
 
 	public Tratta aggiorna(Tratta tratta);
 
+	public void rimuovi(Tratta tratta);
+
 }

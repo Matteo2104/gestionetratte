@@ -45,4 +45,10 @@ public class TrattaServiceImpl implements TrattaService {
 	public Tratta aggiorna(Tratta tratta) {
 		return repository.save(tratta);
 	}
+	
+	@Override
+	@Transactional
+	public void rimuovi(Tratta tratta) {
+		repository.delete(tratta);
+	}
 }
