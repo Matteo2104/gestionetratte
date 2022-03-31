@@ -86,11 +86,11 @@ public class AirbusController {
 		airbusService.rimuovi(airbus);
 	}
 	
-	/*
+	
 	@PostMapping("/search")
-	public List<RegistaDTO> search(@RequestBody RegistaDTO example) {
-		return RegistaDTO.createRegistaDTOListFromModelList(registaService.findByExample(example.buildRegistaModel(), null, null, null).toList(),
-				false);
+	public List<AirbusDTO> search(@RequestBody AirbusDTO example) {
+		return AirbusDTO.createAirbusDTOListFromModelList(
+				airbusService.findByExample(example.buildAirbusModel(), null, null, null).toList(), false);
 	}
-	*/
+	
 }
